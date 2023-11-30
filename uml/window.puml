@@ -1,0 +1,60 @@
+@startuml
+class windows.WelcomeWindow {
+# boolean onClose()
+# void initWindow()
++ void goToPvP()
++ void goToPvE()
+}
+class windows.RoomWindow {
+- Player player
++ HashSet<String> roomSet
+# boolean onClose()
+# void initWindow()
++ void goToPvpWindow(Player)
+}
+class windows.UnitNew {
++ {static} int unit
++ {static} Font normalFont(int)
++ {static} Dimension normalSize(double,double)
++ {static} Point normalPoint(double,double)
+- {static} int getUnit()
+}
+abstract class windows.AbstractWindow {
+- CloseAction closeAction
+- HashMap<String,Component> componentMap
+- Point calculateCenter(double,double,double,double)
+# {abstract}boolean onClose()
+# {abstract}void initWindow()
+# void closeWindow()
++ T getComponent(String)
+# void addComponent(Container,String,T,Consumer<T>)
+# void addComponent(Container,String,T,Object,Consumer<T>)
+# void addComponentScrollable(Container,String,T,Object,Consumer<T>)
+}
+class windows.PvpWindow {
+- Player player
++ CheckerBoard checkerBoard
+# boolean onClose()
+# void initWindow()
++ void goBack()
+}
+class windows.PveWindow {
+~ ButtonGroup group
+# boolean onClose()
+# void initWindow()
++ void goBack()
+}
+enum windows.CloseAction {
++  DISPOSE
++  EXIT
+- Consumer<AbstractWindow> action
++ void doAction(AbstractWindow)
+}
+
+
+windows.AbstractWindow <|-- windows.WelcomeWindow
+windows.AbstractWindow <|-- windows.RoomWindow
+windows.JFrame <|-- windows.AbstractWindow
+windows.AbstractWindow <|-- windows.PvpWindow
+windows.AbstractWindow <|-- windows.PveWindow
+@enduml

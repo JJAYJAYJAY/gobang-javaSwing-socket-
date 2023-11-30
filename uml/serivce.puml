@@ -1,0 +1,16 @@
+@startuml
+class service.PlayChessService {
+- CheckerBoard checkerBoard
+- AbstractWindow window
++ int[] getMouseLocation(MouseEvent)
++ void paintBoard(Graphics)
++ void paintChess(Graphics)
++ void showIndex(Graphics,int[])
++ void placeChess(MouseEvent)
++ void placeChess(int[])
++ boolean isWin()
++ int isLineWin(int[])
++ void repent(int)
++ void giveUp()
+}
+@enduml

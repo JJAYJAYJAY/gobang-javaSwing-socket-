@@ -1,0 +1,11 @@
+@startuml
+class eneity.AI {
+- CheckerBoard checkerBoard
+- HashMap<String,Integer> checkMap
++ void aiPlayChess()
+- int[] bestPoint(Stack<int[]>,int[][])
+- List<int[]> getCheckRange(Stack<int[]>,int[][])
+- String getLine(int,int[][],int[],int,int)
+- int scoreLine(String)
+}
+@enduml

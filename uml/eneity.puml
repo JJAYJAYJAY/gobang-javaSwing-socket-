@@ -1,0 +1,54 @@
+@startuml
+class eneity.CheckerBoard {
+- int[][] grid
+- Stack<int[]> history
+- int x0
++ int count
++ PlayChessService playChessService
+~ int[] index
+- Image iBuffer
+- Graphics gBuffer
++ AI ai
++ AbstractWindow window
+- Player player
++ void sendCheckerMessage()
++ void addListeners()
++ void removeListeners()
++ void setPve()
++ void paint(Graphics)
++ void update(Graphics)
++ Stack<int[]> getHistory()
++ int getX0()
++ int getY0()
++ int[][] getGrid()
++ void setGrid(int[][])
++ void setCount(int)
++ void setHistory(Stack<int[]>)
++ void setBlack(int[])
++ void setWhite(int[])
++ void setNull(int[])
++ void blackFirst()
++ void restart()
+}
+class eneity.MeaninglessPointException {
+}
+class eneity.Message {
++ String type
++ Object value
++ Object[] values
+}
+class eneity.AI {
+- CheckerBoard checkerBoard
+- HashMap<String,Integer> checkMap
++ void aiPlayChess()
+- int[] bestPoint(Stack<int[]>,int[][])
+- List<int[]> getCheckRange(Stack<int[]>,int[][])
+- String getLine(int,int[][],int[],int,int)
+- int scoreLine(String)
+}
+
+
+eneity.JPanel <|-- eneity.CheckerBoard
+eneity.Exception <|-- eneity.MeaninglessPointException
+java.io.Serializable <|.. eneity.Message
+@enduml

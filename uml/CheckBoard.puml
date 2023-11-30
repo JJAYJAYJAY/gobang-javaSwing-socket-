@@ -1,0 +1,34 @@
+@startuml
+class eneity.CheckerBoard {
+- int[][] grid
+- Stack<int[]> history
++ int x0
++ int count
++ PlayChessService playChessService
+~ int[] index
+- Image iBuffer
+- Graphics gBuffer
++ AI ai
++ AbstractWindow window
+- Player player
++ void sendCheckerMessage()
++ void addListeners()
++ void removeListeners()
++ void setPve()
++ void paint(Graphics)
++ void update(Graphics)
++ Stack<int[]> getHistory()
++ int[][] getGrid()
++ void setGrid(int[][])
++ void setCount(int)
++ void setHistory(Stack<int[]>)
++ void setBlack(int[])
++ void setWhite(int[])
++ void setNull(int[])
++ void blackFirst()
++ void restart()
+}
+
+
+eneity.JPanel <|-- eneity.CheckerBoard
+@enduml

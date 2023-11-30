@@ -1,0 +1,10 @@
+@startuml
+class eneity.Message {
++ String type
++ Object value
++ Object[] values
+}
+
+
+java.io.Serializable <|.. eneity.Message
+@enduml

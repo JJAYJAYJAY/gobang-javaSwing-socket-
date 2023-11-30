@@ -1,0 +1,81 @@
+@startuml
+class web.Server {
++ {static} HashMap<String,Socket> roomMap
++ {static} ArrayList<UserThread> userList
++ {static} HashMap<String,Socket> socketMap
++ {static} HashMap<Socket,UserThread> socketThreadMap
+- {static} void removeRoom(Socket)
+- {static} void addRoom(Object,Socket)
++ {static} void main(String[])
+}
+class web.Server$UserThread {
++ Socket socket
+- String name
+- Socket targetSocket
++ ObjectOutputStream oos
++ ObjectInputStream ois
++ Message message
+- boolean thisFlag
+- HashMap<String,Command> commandMap
++ void run()
+- void setNamePerform()
+- void addRoomPerform()
+- void enterPerform()
+- void hasPeoplePerform()
+- void boardPerform()
+- void getRoomListPerform()
+- void thisReadyPerform()
+- void thisNotReadyPerform()
+- void targetReadyPerform()
+- void targetNotReadyPerform()
+- void winPerform()
+- void competitorExitPerform()
+- void wantToRepentPerform()
+- void agreeRepentPerform()
+- void rejectRepentPerform()
+- void giveUpPerform()
+}
+interface web.Command {
+~ void command()
+}
+class web.Player {
+- Socket socket
+- ObjectInputStream ois
+- ObjectOutputStream oos
++ RoomWindow roomWindow
++ PvpWindow pvpWindow
++ WelcomeWindow welcomeWindow
+~ Player.ReadThread readThread
++ int color
++ void send(Object)
++ Message read()
++ void close()
+}
+class web.Player$ReadThread {
+~ Message message
+~ HashMap<String,Command> commandMap
++ void run()
+- void hadNamePerform()
+- void hadRoomPerform()
+- void addRoomSuccessfully()
+- void roomListPerform()
+- void hadPeoplePerform()
+- void hasPeoplePerform()
+- void competitorExitPerform()
+- void targetReadyPerform()
+- void targetNotReadyPerform()
+- void startPerform()
+- void boardPerform()
+- void winPerform()
+- void wantToRepentPerform()
+- void agreeRepentPerform()
+- void rejectRepentPerform()
+- void giveUpPerform()
+}
+
+
+web.Server +.. web.Server$UserThread
+web.Thread <|-- web.Server$UserThread
+web.Player +.. web.Player$ReadThread
+web.Thread <|-- web.Player$ReadThread
+@enduml
